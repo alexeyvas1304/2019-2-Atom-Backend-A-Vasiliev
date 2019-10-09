@@ -15,7 +15,7 @@ class TestTicTacToe(unittest.TestCase):
         :return: None
         """
 
-        game = TicTacToe()
+        game = TicTacToe(first_player='name1', second_player='name2')
 
         self.assertEqual(game.is_win('x'), False)
         self.assertEqual(game.is_win('o'), False)
