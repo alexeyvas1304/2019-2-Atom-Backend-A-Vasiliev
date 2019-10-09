@@ -9,7 +9,7 @@ class TestTicTacToe(unittest.TestCase):
     """
     Класс тестов
     """
-    def tests(self):
+    def test_all(self):
         """
         Функция с проверками
         :return: None
