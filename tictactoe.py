@@ -8,12 +8,15 @@ class TicTacToe:
     Класс для игры в крестики-нолики
     """
 
-    def __init__(self):
+    def __init__(self, warnings=False, first_player=None, second_player=None):
         self.lst = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-        self.first_player = input("Введите имя первого игрока (крестик): ")
-        self.second_player = input("Введите имя второго игрока (нолик): ")
+        self.first_player = input("Введите имя первого игрока (крестик): ") \
+            if first_player is None else first_player
+        self.second_player = input("Введите имя второго игрока (нолик): ") \
+            if second_player is None else second_player
         self.players = dict(zip(['x', 'o'],
                                 [self.first_player, self.second_player]))
+        self.warnings = warnings
 
     def paint(self):
         """
@@ -95,13 +98,15 @@ class TicTacToe:
                     self.lst[(num - 1) // 3][(num - 1) % 3] not in ['x', 'o']:
                 return True
             else:
-                print(f"{self.players[sign]}, Вы ошиблись с числом")
+                if self.warnings:
+                    print(f"{self.players[sign]}, Вы ошиблись с числом")
                 return False
         except ValueError:
-            print(f"{self.players[sign]}, Вы ввели не натуральное число")
+            if self.warnings:
+                print(f"{self.players[sign]}, Вы ввели не натуральное число")
             return False
 
 
 if __name__ == '__main__':
-    GAME = TicTacToe()
+    GAME = TicTacToe(warnings=True)
     GAME.play()
