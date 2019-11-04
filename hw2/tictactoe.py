@@ -14,8 +14,9 @@ class TicTacToe:
             if first_player is None else first_player
         self.second_player = input("Введите имя второго игрока (нолик): ") \
             if second_player is None else second_player
-        self.players = dict(zip(['x', 'o'],
-                                [self.first_player, self.second_player]))
+        self.players = dict(
+            zip(['x', 'o'], [self.first_player, self.second_player])
+        )
         self.warnings = warnings
 
     def paint(self):
