@@ -2,4 +2,4 @@ venv/
 *.pyc
 *.swo
 *.swp
-.env
+messenger/.env
