@@ -4,4 +4,5 @@ from django.urls import path
 urlpatterns = [
     path('profil/', profil, name='profil'),
     path('contacts/', contacts, name='contacts'),
+    path('profil/<int:pk>/', profil, name='profil'),
     ]

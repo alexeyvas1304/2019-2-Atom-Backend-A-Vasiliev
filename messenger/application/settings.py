@@ -29,6 +29,7 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = []
 
 # Application definition
+AUTH_USER_MODEL = "user_info.User"
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user_info',
     'chat_info',
-    'common',
 ]
 
 MIDDLEWARE = [
