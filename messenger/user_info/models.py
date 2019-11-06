@@ -7,4 +7,8 @@ class User (AbstractUser):
     nick = models.CharField(max_length=50)
     avatar = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
+
 
