@@ -4,6 +4,5 @@ venv/
 *.swp
 messenger/.env
 .idea
-messenger/dbsqlite3
-local_settings.py
+messenger/application/local_settings.py
 
