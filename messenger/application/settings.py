@@ -28,8 +28,10 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
+
 # Application definition
-AUTH_USER_MODEL = "user_info.User"
+
+AUTH_USER_MODEL = "users.User"
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user_info',
-    'chat_info',
+    'chats',
+    'users',
+    'message',
+    'attachments',
 ]
 
 MIDDLEWARE = [
@@ -125,8 +129,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
