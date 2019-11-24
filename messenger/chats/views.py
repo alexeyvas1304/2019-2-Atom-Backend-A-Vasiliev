@@ -11,7 +11,7 @@ from chats.forms import CreateChatForm, AddUserForm
 
 
 @csrf_exempt
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["POST"])
 def create_chat(request):
 
     form = CreateChatForm(request.POST)
@@ -30,7 +30,7 @@ def create_chat(request):
 
 
 @csrf_exempt
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["POST"])
 def add_user_to_chat(request):
     form = AddUserForm(request.POST)
     if form.is_valid():

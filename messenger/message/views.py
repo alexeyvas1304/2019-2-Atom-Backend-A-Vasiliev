@@ -10,7 +10,7 @@ from message.forms import SendMessageForm, ReadMessageForm
 
 
 @csrf_exempt
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["POST"])
 def send_message(request):
     form = SendMessageForm(request.POST)
     if form.is_valid():
@@ -40,7 +40,7 @@ def send_message(request):
 
 
 @csrf_exempt
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["POST"])
 def read_message(request):
     form = ReadMessageForm(request.POST)
     if form.is_valid():
