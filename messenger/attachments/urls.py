@@ -3,5 +3,5 @@ from django.urls import path
 
 urlpatterns = [
     path('upload_attachment/', upload_attachment, name='upload_attachment'),
-    path('download_attachment/<str:url>', download_attachment, name='download_attachment'),
+    path('download_attachment/<str:url>/', download_attachment, name='download_attachment'),
     ]
