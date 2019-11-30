@@ -36,6 +36,7 @@ def send_message(request):
                 member.new_messages += 1
             member.save()
         return JsonResponse({"response": "ok"})
+    print(form.errors)
     return JsonResponse({'errors': form.errors}, status=400)
 
 

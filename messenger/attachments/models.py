@@ -12,6 +12,7 @@ class Attachment(models.Model):
                                 on_delete=models.SET_NULL, null=True, related_name='attachments')
     type_of_attachment = models.CharField(max_length=20, verbose_name='формат вложения')
     url = models.CharField(max_length=200, verbose_name='url вложения')
+    data = models.ImageField(upload_to='images/', null=True)
 
     class Meta:
         verbose_name = 'вложение'

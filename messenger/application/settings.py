@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'users',
     'message',
     'attachments',
+    'social_django',
+    'sslserver',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +57,31 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.vk.VKOAuth2',
+    'social_core.backends.odnoklassniki.OdnoklassnikiOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = config('SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = config('SOCIAL_AUTH_VK_OAUTH2_SECRET')
+
+SOCIAL_AUTH_ODNOKLASSNIKI_OAUTH2_KEY = config('SOCIAL_AUTH_ODNOKLASSNIKI_OAUTH2_KEY')
+SOCIAL_AUTH_ODNOKLASSNIKI_OAUTH2_SECRET = config('SOCIAL_AUTH_ODNOKLASSNIKI_OAUTH2_SECRET')
+SOCIAL_AUTH_ODNOKLASSNIKI_OAUTH2_PUBLIC_NAME = config('SOCIAL_AUTH_ODNOKLASSNIKI_OAUTH2_PUBLIC_NAME')
 
 ROOT_URLCONF = 'application.urls'
 
@@ -75,6 +102,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'application.wsgi.application'
+
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:3000",
+#     "https://localhost:3000",
+# ]
 
 
 # Database
@@ -124,8 +156,21 @@ USE_L10N = True
 
 USE_TZ = True
 
+# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_ENDPOINT_URL = config('AWS_S3_ENDPOINT_URL')
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+

@@ -1,9 +1,10 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from users.models import User
 from chats.models import Chat, Member
+from django.contrib.auth.decorators import login_required
 # формы
 
 
@@ -13,6 +14,7 @@ def search_users(request, nick=None):
     if nick is None:
         return JsonResponse({})
     res = list(User.objects.filter(nick__contains=nick).values('id', 'name', 'nick', 'avatar'))
+    print(request.user)
     return JsonResponse({"response": res})
 
 
@@ -72,3 +74,13 @@ def get_user_contacts(request, user_id=None):
         "avatar": contact.avatar,
         "data_joined": contact.date_joined
     } for contact in list_of_contacts]})
+
+
+def login(request):
+    return render(request, 'login.html')
+
+@login_required
+def home(request):
+    print(request.user)
+    return render(request, 'home.html')
+

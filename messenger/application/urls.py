@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from users.views import login, home
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('chats/', include('chats.urls')),
     path('users/', include('users.urls')),
     path('message/', include('message.urls')),
-    # path('attachments/', include('attachments.urls')),
+    path('attachments/', include('attachments.urls')),
+    path('login/', login, name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('social_auth/', include('social_django.urls', namespace='social')),
+    path('', home, name='home'),
 ]

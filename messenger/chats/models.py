@@ -7,6 +7,7 @@ class Chat(models.Model):
     topic = models.CharField(verbose_name='название', max_length=60)
     last_message = models.OneToOneField('message.Message', verbose_name='id последнего сообщения чата',
                                         on_delete=models.SET_NULL, null=True, related_name='last_message_of_chat')
+    # avatar = models.ImageField(upload_to='images/', null=True)
 
     class Meta:
         verbose_name = 'чат'

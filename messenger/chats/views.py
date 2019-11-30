@@ -26,6 +26,7 @@ def create_chat(request):
         chat.save()
         member = Member.objects.create(user_id=user_id, chat_id=chat.id, last_read_message_id=message.id)
         return JsonResponse({"response": "ok"})
+    print(form.errors)
     return JsonResponse({'errors': form.errors}, status=400)
 
 
